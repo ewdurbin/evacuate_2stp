@@ -22,3 +22,9 @@ pipenv run python decrypt_2STP.py --encrypted-2stp-export <path to your 2STP exp
 ```
 
 <a name="footnote1">1</a>: See "Can I migrate my account data to another authenticator app?" section of [the end of support accouncement](http://thomasrzhao.com/2stp-support/end-of-support/) for details on generating this export.
+
+## Demo
+
+A demo file `demo.2stp` is available for testing, it's password is `test`
+
+![example gif](demo.gif)

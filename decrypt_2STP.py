@@ -131,11 +131,10 @@ def main(encrypted_2stp_export):
         otp_uri = f'otpauth://{otp_type}/{otp_label}?{otp_parameters}'
         qr = qrcode.QRCode()
         qr.add_data(otp_uri)
-        click.echo("\n"*5)
+        click.echo("")
         click.echo(f'{item.generation_type}: {item.issuer} - {item.account_name}')
-        click.echo("\n"*5)
         qr.print_ascii()
-        click.echo("\n"*10)
+        click.echo("")
         input("Press Enter to continue...")
 
 
