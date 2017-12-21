@@ -12,7 +12,7 @@ Requires:
 
   - [Python 3.6](https://www.python.org/downloads/)
   - :cake: [`pipenv`](https://docs.pipenv.org) :cake:
-  - An encrypted 2STP export file[^1]
+  - An encrypted 2STP export file<sup>[1](#footnote1)</sup>
 
 ```
 git clone https://github.com/ewdurbin/evacuate_2stp.git
@@ -21,4 +21,4 @@ pipenv install
 pipenv run python decrypt_2STP.py --encrypted-2stp-export <path to your 2STP export>
 ```
 
-[^1]: See "Can I migrate my account data to another authenticator app?" section of [the end of support accouncement](http://thomasrzhao.com/2stp-support/end-of-support/) for details on generating this export.
+<a name="footnote1">1</a>: See "Can I migrate my account data to another authenticator app?" section of [the end of support accouncement](http://thomasrzhao.com/2stp-support/end-of-support/) for details on generating this export.
