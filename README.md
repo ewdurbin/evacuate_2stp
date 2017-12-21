@@ -10,8 +10,8 @@ This tool allows for decrypting the encrypted backups created by 2STP.
 
 Requires:
 
-  - Python 3.6
-  - :cake: `pipenv` :cake:
+  - [Python 3.6](https://www.python.org/downloads/)
+  - :cake: [`pipenv`](https://docs.pipenv.org) :cake:
 
 ```
 git clone https://github.com/ewdurbin/evacuate_2stp.git
