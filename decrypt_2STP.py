@@ -1,4 +1,7 @@
+import base64
 import getpass
+
+from urllib.parse import urlencode
 
 import click
 
@@ -109,12 +112,32 @@ class DangerousUnarchive(archiver.Unarchive):
               required=True,
               type=click.File('rb'))
 def main(encrypted_2stp_export):
-    password = getpass.getpass(f'Password for export file {encrypted_2stp_export.name}: ') 
+    password = getpass.getpass(f'Password for export file {encrypted_2stp_export.name}: ')
     data = RawRNCryptor().decrypt(encrypted_2stp_export.read(), password)
     plist = bplist.parse(data)
     archive = DangerousUnarchive(data).top_object()
     for item in archive:
-        click.echo(item)
+        otp_type = item.generation_type
+        otp_label = f'{item.issuer}:{item.account_name}'
+        otp_parameters = {
+            'secret': base64.b32encode(item.secret).decode("utf-8"),
+            'algorithm': item.algorithm,
+            'period': item.period,
+            'digits': item.num_digits,
+            'issuer': item.issuer,
+            'counter': item.counter,
+        }
+        otp_parameters = urlencode({k: v for k, v in otp_parameters.items() if v})
+        otp_uri = f'otpauth://{otp_type}/{otp_label}?{otp_parameters}'
+        qr = qrcode.QRCode()
+        qr.add_data(otp_uri)
+        click.echo("\n"*5)
+        click.echo(f'{item.generation_type}: {item.issuer} - {item.account_name}')
+        click.echo("\n"*5)
+        qr.print_ascii()
+        click.echo("\n"*10)
+        input("Press Enter to continue...")
+
 
 if __name__ == '__main__':
     main()
