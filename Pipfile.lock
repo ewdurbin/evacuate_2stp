@@ -1,18 +1,18 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "a1744fe3d7253b80c64d76a12cf3e5c1c2ade5cf6803ad26a7f30e49a0de4500"
+            "sha256": "8b4751f703f0cf7d2c09412ec7b41a09ab7e454993be5d3b92b519a9f1812aa6"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
-            "implementation_version": "3.6.3",
+            "implementation_version": "3.6.4",
             "os_name": "posix",
             "platform_machine": "x86_64",
             "platform_python_implementation": "CPython",
             "platform_release": "17.3.0",
             "platform_system": "Darwin",
             "platform_version": "Darwin Kernel Version 17.3.0: Thu Nov  9 18:09:22 PST 2017; root:xnu-4570.31.3~1/RELEASE_X86_64",
-            "python_full_version": "3.6.3",
+            "python_full_version": "3.6.4",
             "python_version": "3.6",
             "sys_platform": "darwin"
         },
@@ -48,12 +48,12 @@
             ],
             "version": "==2.6.1"
         },
-        "qrcode": {
+        "pyqrcode": {
             "hashes": [
-                "sha256:60222a612b83231ed99e6cb36e55311227c395d0d0f62e41bb51ebbb84a9a22b",
-                "sha256:4115ccee832620df16b659d4653568331015c718a754855caf5930805d76924e"
+                "sha256:fdbf7634733e56b72e27f9bce46e4550b75a3a2c420414035cae9d9d26b234d5",
+                "sha256:1b2812775fa6ff5c527977c4cd2ccb07051ca7d0bc0aecf937a43864abe5eff6"
             ],
-            "version": "==5.3"
+            "version": "==1.2.1"
         },
         "rncryptor": {
             "hashes": [
@@ -61,13 +61,6 @@
                 "sha256:156253246f3e3521e5080191e9b4ec100e162d07c261a9df86169f8943bcc7a3"
             ],
             "version": "==3.2.0"
-        },
-        "six": {
-            "hashes": [
-                "sha256:832dc0e10feb1aa2c68dcc57dbb658f1c7e65b9b61af69048abc87a2db00a0eb",
-                "sha256:70e8a77beed4562e7f14fe23a786b54f6296e34344c23bc42f07b15018ff98e9"
-            ],
-            "version": "==1.11.0"
         }
     },
     "develop": {}

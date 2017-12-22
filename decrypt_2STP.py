@@ -1,18 +1,17 @@
 import base64
 import getpass
 
-from urllib.parse import urlencode
+from urllib.parse import quote
 
 import click
 
 from rncryptor import RNCryptor
 from rncryptor import bord
 
-from bpylist import bplist
 from bpylist import archiver
 from bpylist.archive_types import uid
 
-import qrcode
+import pyqrcode
 
 
 class OTPToken:
@@ -97,7 +96,7 @@ class DangerousUnarchive(archiver.Unarchive):
 
         class_uid = raw_obj.get('$class')
         if not isinstance(class_uid, uid):
-            raise MissingClassUID(raw_obj)
+            raise archiver.MissingClassUID(raw_obj)
 
         klass = self.class_for_uid(class_uid)
         obj = klass.decode_archive(archiver.ArchivedObject(raw_obj, self))
@@ -114,11 +113,10 @@ class DangerousUnarchive(archiver.Unarchive):
 def main(encrypted_2stp_export):
     password = getpass.getpass(f'Password for export file {encrypted_2stp_export.name}: ')
     data = RawRNCryptor().decrypt(encrypted_2stp_export.read(), password)
-    plist = bplist.parse(data)
     archive = DangerousUnarchive(data).top_object()
     for item in archive:
         otp_type = item.generation_type
-        otp_label = f'{item.issuer}:{item.account_name}'
+        otp_label = quote(f'{item.issuer}:{item.account_name}')
         otp_parameters = {
             'secret': base64.b32encode(item.secret).decode("utf-8"),
             'algorithm': item.algorithm,
@@ -127,13 +125,12 @@ def main(encrypted_2stp_export):
             'issuer': item.issuer,
             'counter': item.counter,
         }
-        otp_parameters = urlencode({k: v for k, v in otp_parameters.items() if v})
+        otp_parameters = '&'.join([f'{str(k)}={quote(str(v))}' for (k, v) in otp_parameters.items() if v])
         otp_uri = f'otpauth://{otp_type}/{otp_label}?{otp_parameters}'
-        qr = qrcode.QRCode()
-        qr.add_data(otp_uri)
+        qr = pyqrcode.create(otp_uri, error="L")
         click.echo("")
         click.echo(f'{item.generation_type}: {item.issuer} - {item.account_name}')
-        qr.print_ascii()
+        click.echo(qr.terminal(quiet_zone=4))
         click.echo("")
         input("Press Enter to continue...")
 
