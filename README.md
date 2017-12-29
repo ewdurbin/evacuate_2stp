@@ -6,6 +6,8 @@ With the release of iOS 11.2.1, the UI for 2STP has begun to degrade. Sending me
 
 This tool allows for decrypting the encrypted backups created by 2STP.
 
+If you're looking for a new iOS app, I'd reccommend [OTP Auth](http://cooperrs.de/otpauth.html). It provides a similar experience, shows rapid progress, and has proactive support similar to that provided by 2STP. As a bonus, the backup file format and encryption is well documented over at [CooperRS/decrypt-otpauth-files](https://github.com/CooperRS/decrypt-otpauth-files), allowing you the freedom to migrate your codes to a new app if the [author gets hired by Apple](http://thomasrzhao.com/2stp-support/end-of-support/).
+
 ## Usage
 
 Requires:
