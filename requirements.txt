@@ -1,0 +1,4 @@
+rncryptor
+bpylist
+click
+PyQRCode
